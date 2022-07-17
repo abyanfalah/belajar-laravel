@@ -1,5 +1,8 @@
 <?php
+namespace App;
 
+use App\Http\Controllers\PostController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,11 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
 
 
 Route::get('/', function () {
@@ -27,39 +25,15 @@ Route::get('/', function () {
     return view('home',$data);
 });
 
-Route::get('/post', function () {
+Route::get('/post', [PostController::class, 'index']);
 
-    $data = [
-        "title" => "Blog",
-        "posts" => $blog_posts
-    ];
-    return view('post', $data);
-
-    
-});
-
-
-Route::get('/post/{slug}', function ($slug) {
-    
-    $the_post = [];
-    foreach($blog_posts as $post){
-        if($post["slug"] == $slug){
-            $the_post = $post;
-        }
-    }
-   
-    $data = [
-        "title" => $the_post["judul"],
-        "post" => $the_post
-    ];
-    return view('post_view', $data);
-});
+Route::get('/post/{slug}', [PostController::class, 'find']);
 
 Route::get('/about', function () {
     $data = [
         "title" => "About",
-        "nama" => "yafi",
-        "asal" => "cianjur"
+        "nama"  => "yafi",
+        "asal"  => "cianjur"
     ];
     return view('about', $data);
 });
