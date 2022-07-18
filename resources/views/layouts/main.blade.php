@@ -7,6 +7,11 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/assets/bootstrap/bootstrap.min.css">
+    <style>
+      a{
+        text-decoration: none;
+      }
+    </style>
     <title>{{ $title }}</title>
   </head>
   <body>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,12 +17,22 @@ class PostController extends Controller
         return view('post', $data);
     }
 
-    public function find($slug){
-        $post = Post::find($slug);
+    public function find(Post $post){
         $data = [
-            "title" => $post['judul'],
+            "title" => 'hadeuh',
             "post" => $post
         ];
         return view('post_view', $data);
+    }
+
+    public function find_by_author(User $user)
+    {
+        $data = [
+            "title" => "Author: ".$user->name,
+            "user"  => $user,
+            "posts" => $user->post
+        ];
+
+        return view('author_post', $data);
     }
 }

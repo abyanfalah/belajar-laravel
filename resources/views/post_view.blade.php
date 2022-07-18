@@ -5,9 +5,13 @@
 
 <div class="card shadow mb-3">
     <div class="card-body">
-        <h3>{{ $post["judul"] }}</h3>    
-        <small class="text-muted">Oleh: {{ $post["author"] }}</small>
-        <p>{{ $post["body"] }}</p>
+        <h3>{{ $post->title }}</h3>    
+        <small class="text-muted">
+            By: 
+            <a href="/post/author/{{ $post->user->name }}">{{ $post->user->name }}</a>
+            in: 
+            <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a></small>
+        <p>{{ $post->body }}</p>
     </div>
 </div>
 
