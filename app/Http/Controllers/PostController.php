@@ -12,14 +12,14 @@ class PostController extends Controller
     public function index(){
         $data = [
             "title" => "Blog",
-            "posts" => Post::all()
+            "posts" => Post::latest()->get()
         ];
         return view('post', $data);
     }
 
     public function find(Post $post){
         $data = [
-            "title" => 'hadeuh',
+            "title" => $post->title,
             "post" => $post
         ];
         return view('post_view', $data);
