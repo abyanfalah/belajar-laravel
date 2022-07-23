@@ -8,9 +8,9 @@
         <h3>{{ $post->title }}</h3>    
         <small class="text-muted">
             By: 
-            <a href="/post/author/{{ $post->user->name }}">{{ $post->user->name }}</a>
+            <a href="/post/author/{{ $post->user->username }}">{{ $post->user->name }}</a>
             in: 
-            <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a></small>
+            <a href="/post/category/{{ $post->category->slug }}">{{ $post->category->name }}</a></small>
         <p>{{ $post->body }}</p>
     </div>
 </div>

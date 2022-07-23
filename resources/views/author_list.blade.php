@@ -3,10 +3,10 @@
 
 @section('container')            
 <ul>
-    @foreach ($categories as $cat)
+    @foreach ($authors as $author)
         <li>
-            <a href="/post/category/{{ $cat->slug }}">
-                <h3>{{ $cat->name }}</h3>
+            <a href="/post/author/{{ $author->username }}">
+                <h3>{{ $author->name }}</h3>
             </a>
         </li>
     @endforeach

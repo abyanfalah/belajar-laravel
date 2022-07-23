@@ -13,9 +13,10 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
+        $name = $this->faker->word();
         return [
-            'name' => $this->faker->word(),
-            'slug' => $this->faker->slug()
+            'name' => $name,
+            'slug' => str_replace(" ", "-", $name)
         ];
     }
 }

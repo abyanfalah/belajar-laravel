@@ -4,6 +4,7 @@ namespace App;
 use App\Http\Controllers\PostController;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,33 +21,33 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    $data = [
-        "title" => "Home"
-    ];
+    $data = ["title" => "Home"];
     return view('home',$data);
 });
 
-Route::get('/post', [PostController::class, 'index']);
-Route::get('/post/{post:slug}', [PostController::class, 'find']);
-Route::get('/post/author/{user:name}', [PostController::class, 'find_by_author']);
+Route:: get('/post', [PostController::class, 'index']);
+Route:: get('/post/{post:slug}', [PostController::class, 'find']);
+Route:: get('/post/author/{user:username}', [PostController::class, 'find_by_author']);
+Route:: get('/post/category/{category:slug}', [PostController::class, 'find_by_category']);
 
 
 Route::get('/categories', function(){
-    $data= [
-        "title" => "Categories",
+    $data = [
+        "title"      => "Categories",
         "categories" => Category::all()
     ];   
     return view('category_list', $data);
 });
 
-Route::get('/categories/{category:slug}', function(Category $category){
-    $data=[
-        "title" => $category->name,
-        "category" => $category,
-        "posts" => $category->post
+Route::get('/authors', function(){
+    $data = [
+        "title"   => "Authors",
+        "authors" => User::all()
     ];
-    return view('category_posts', $data);
+
+    return view('author_list', $data);
 });
+
 
 Route::get('/about', function () {
     $data = [
