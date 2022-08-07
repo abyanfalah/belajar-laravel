@@ -1,8 +1,8 @@
 @extends('layouts.main')
 @php
 	function title_trim($text){
-		if (strlen($text) > 40 ) {
-			return Str::substr($text, 0, 40)."...";
+		if (strlen($text) > 80 ) {
+			return Str::substr($text, 0, 80)."...";
 		}
 		return $text;	
 	}
@@ -10,7 +10,17 @@
 
 @section('container')            
 
-<h1>{{ $title }}</h1>
+<h1 class="text-center">{{ $title }}</h1>
+
+
+<form class="input-group mb-3 col-6 mx-auto" action="/post">
+	<input type="text" class="form-control" value="{{ trim(request('search')) }}" name="search" placeholder="Search">
+	<div class="input-group-append">
+		<button class="btn btn-primary" type="submit">
+			<img src="/symbols/magnifying-glass.svg">
+		</button>
+	</div>
+</form>
 
 
 @if ($posts->count() > 0)
@@ -21,7 +31,8 @@
 	<img height="300px" src="/img/{{ $img }}" class="card-img-top" alt="{{ $img }}">
 	<div class="card-body">
 			<a class="text-decoration-none" href="/post/{{ $posts[0]->slug }}"> 
-					<h3>{{ title_trim($posts[0]->title) }}</h3>    
+					{{-- <h3>{{ title_trim($posts[0]->title) }}</h3>     --}}
+					<h3>{{ $posts[0]->title }}</h3>
 			</a>
 			<small>
 				By: <a href="/post/author/{{ $posts[0]->user->username }}">{{ $posts[0]->user->name }}</a>
@@ -38,11 +49,6 @@
 	</div>
 </div>       
 
-<hr>
-@else
-	<p class="text-center display-3">No post found.</p>
-@endif
-
 <div class="row">
 	@foreach ($posts->skip(1) as $post)
 		<div class="col-md-4">
@@ -58,7 +64,7 @@
 				<img height="200px" src="/img/{{ $img }}" class="card-img-top" alt="{{ $img }}">
 				<div class="card-body">
 						<a class="text-decoration-none" href="/post/{{ $post->slug }}"> 
-							<h3>{{ title_trim($post->title) }}</h3>    
+							<h5>{{ title_trim($post->title) }}</h5>    
 						</a>
 						<small class="text-muted">
 							By: <a href="/post/author/{{ $post->user->username }}">{{ $post->user->name }}</a>
@@ -75,7 +81,13 @@
 				</div>
 			</div>
 		</div>
+
+
 	@endforeach
+
+	@else
+	<div  class="text-center display-3">No post found.</div>
+@endif
 </div>
 
 @endsection
