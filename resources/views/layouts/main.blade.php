@@ -8,17 +8,23 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/assets/bootstrap/bootstrap.min.css">
     <style>
+      
       a{
         text-decoration: none;
+        color: black;
+      }
+
+      img{
+        object-fit: cover;
       }
     </style>
     <title>{{ $title }}</title>
   </head>
-  <body>
+  <body class="bg-light">
 
     @include('partials.navbar')
 
-      <div class="container">
+      <div class="container pb-5">
         @yield('container')
       </div>
  

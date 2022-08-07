@@ -31,7 +31,7 @@ class PostController extends Controller
         $data=[
             "title"    => "Category: ".$category->name,
             "category" => $category,
-            "posts"    => $category->post
+            "posts"    => $category->post->load('user', 'category')
         ];
         return view('post', $data);
     }
@@ -41,7 +41,7 @@ class PostController extends Controller
         $data = [
             "title" => "Author: ".$user->name,
             "user"  => $user,
-            "posts" => $user->post
+            "posts" => $user->post->load('user', 'category')
         ];
 
         return view('post', $data);

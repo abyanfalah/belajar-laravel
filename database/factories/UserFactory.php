@@ -18,6 +18,8 @@ class UserFactory extends Factory
         
         $username = str_replace(" ", "", $name);
         $username = str_replace(".", "", $username);
+        $username = strtolower($username);
+        $usenrame = substr($username, 10);
 
         return [
             'name'              => $name,
