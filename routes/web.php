@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 use App\Models\Post;
@@ -22,24 +23,24 @@ use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
     $data = ["title" => "Home"];
-    return view('home',$data);
+    return view('home', $data);
 });
 
-Route:: get('/post', [PostController::class, 'index']);
-Route:: get('/post/{post:slug}', [PostController::class, 'find']);
-Route:: get('/post/author/{user:username}', [PostController::class, 'find_by_author']);
-Route:: get('/post/category/{category:slug}', [PostController::class, 'find_by_category']);
+Route::get('/post', [PostController::class, 'index']);
+Route::get('/post/{post:slug}', [PostController::class, 'find']);
+// Route:: get('/post/author/{user:username}', [PostController::class, 'find_by_author']);
+// Route:: get('/post/category/{category:slug}', [PostController::class, 'find_by_category']);
 
 
-Route::get('/categories', function(){
+Route::get('/categories', function () {
     $data = [
         "title"      => "Categories",
         "categories" => Category::all()
-    ];   
+    ];
     return view('category_list', $data);
 });
 
-Route::get('/authors', function(){
+Route::get('/authors', function () {
     $data = [
         "title"   => "Authors",
         "authors" => User::all()
@@ -59,10 +60,3 @@ Route::get('/about', function () {
 });
 
 // Route::get('/test', [TestController::class, 'index']);
-
-
-
-
-
-
-

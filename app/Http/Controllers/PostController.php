@@ -10,15 +10,25 @@ use App\Models\Category;
 
 class PostController extends Controller
 {
-    public function index(){
+    public function index()
+    {
+        // dd(request("search"));
+
         $data = [
             "title" => "Blog",
-            "posts" => Post::latest()->filter(request(['search']))->get()
+            "posts" => Post::latest()
+                ->filter(request([
+                    'search',
+                    'category',
+                    'author'
+                ]))
+                ->get()
         ];
         return view('post', $data);
     }
 
-    public function find(Post $post){
+    public function find(Post $post)
+    {
         $data = [
             "title" => $post->title,
             "post"  => $post
@@ -28,8 +38,8 @@ class PostController extends Controller
 
     public function find_by_category(Category $category)
     {
-        $data=[
-            "title"    => "Category: ".$category->name,
+        $data = [
+            "title"    => "Category: " . $category->name,
             "category" => $category,
             "posts"    => $category->post->load('user', 'category')
         ];
@@ -39,7 +49,7 @@ class PostController extends Controller
     public function find_by_author(User $user)
     {
         $data = [
-            "title" => "Author: ".$user->name,
+            "title" => "Author: " . $user->name,
             "user"  => $user,
             "posts" => $user->post->load('user', 'category')
         ];
