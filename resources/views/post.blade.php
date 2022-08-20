@@ -99,4 +99,9 @@ function title_trim($text)
             <div class="text-center">No post with "{{ request('search') }}" found.</div>
     @endif
     </div>
+
+
+    <div class="d-flex justify-content-end">
+        {{ $posts->links() }}
+    </div>
 @endsection

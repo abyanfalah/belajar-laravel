@@ -12,17 +12,27 @@ class PostController extends Controller
 {
     public function index()
     {
-        // dd(request("search"));
+        // modify title when filtering
+        $title = '';
+        if ($category = request('category')) {
+            $title = ' in ' . $category;
+        }
+        if ($author = request('author')) {
+            $title = ' by ' . $author;
+        }
+
 
         $data = [
-            "title" => "Blog",
+            "title" => "Posts " . $title,
             "posts" => Post::latest()
                 ->filter(request([
                     'search',
                     'category',
                     'author'
                 ]))
-                ->get()
+                // ->get()
+                ->paginate(7)
+                ->withQueryString()
         ];
         return view('post', $data);
     }

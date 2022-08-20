@@ -36,7 +36,7 @@ class Post extends Model
         // filter by author (user)
         $query->when($filters['author'] ?? false, function ($query, $author) {
             return $query->whereHas('user', function ($query) use ($author) {
-                $query->where('user', $author);
+                $query->where('username', $author);
             });
         });
     }
