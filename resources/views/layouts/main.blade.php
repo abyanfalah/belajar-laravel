@@ -7,8 +7,11 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/assets/bootstrap/bootstrap.min.css">
+
+    {{-- bootstrap icon --}}
+    <link rel="stylesheet" href="/assets/bootstrap/bootstrap-icons/bootstrap-icons.css">
+
     <style>
-      
       a{
         text-decoration: none;
         color: black;

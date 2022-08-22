@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Models\Post;
+use App\Http\Controllers\AuthController;
 use App\Models\User;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
@@ -58,5 +58,10 @@ Route::get('/about', function () {
     ];
     return view('about', $data);
 });
+
+Route::get('/login', [AuthController::class, 'login']);
+
+Route::get('/registration', [AuthController::class, 'registration']);
+Route::post('/registration', [AuthController::class, 'register']);
 
 // Route::get('/test', [TestController::class, 'index']);
