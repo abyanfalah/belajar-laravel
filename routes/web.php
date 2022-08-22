@@ -62,6 +62,6 @@ Route::get('/about', function () {
 Route::get('/login', [AuthController::class, 'login']);
 
 Route::get('/registration', [AuthController::class, 'registration']);
-Route::post('/registration', [AuthController::class, 'register']);
+Route::post('/registration', [AuthController::class, 'save_registration']);
 
 // Route::get('/test', [TestController::class, 'index']);

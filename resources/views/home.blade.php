@@ -9,4 +9,11 @@
       </h1>
     </div>
   </div>
+
+  <div class="alert alert-info alert-dismissible">
+    alert
+    <button data-dismiss="alert" class="btn-danger close">
+      close
+    </button>
+  </div>
 @endsection

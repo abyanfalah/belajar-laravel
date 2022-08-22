@@ -1,8 +1,12 @@
 @extends('layouts.login')
 
 @section('form')
-
-  
+   @if(session('message'))
+      <div class="alert alert-success alert-dismissable text-center">
+         {{ session('message') }}
+         <button class="close" data-dismiss="alert">&times;</button>
+      </div>
+   @endif
    <form class="form-signin col-md-5 mx-auto">
       <h1 class="h3 mb-3 font-weight-normal text-center">Welcome back!</h1>
       
