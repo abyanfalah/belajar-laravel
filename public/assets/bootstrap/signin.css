@@ -32,13 +32,9 @@ body {
 .form-signin .form-control:focus {
   z-index: 2;
 }
-.form-signin input:not(:first-of-type):not(:last-of-type) {
-  margin-bottom: -1px;
-  margin-top : -1px;
-  border-radius: 0;
-}
 
-.form-signin input:first-of-type {
+
+/* .form-signin input:first-of-type {
   margin-top: 10px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
@@ -48,7 +44,12 @@ body {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+} */
 
+.form-signin input:not(:first-of-type) input:not(:last-of-type) {
+  margin-bottom: -1px;
+  margin-top: -1px;
+  border-radius: 0;
 }
 
 /* .form-registration input:first */

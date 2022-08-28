@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -14,10 +15,41 @@ class AuthController extends Controller
         ]);
     }
 
-    public function logout()
+    public function auth(Request $request)
     {
-        return 'logout';
+        $validated_credentials = $request->validate([
+            'username'    => 'required',
+            'password' => 'required'
+        ]);
+
+        if (Auth::attempt($validated_credentials)) {
+            $name = User::where('username', $validated_credentials)->first()->name;
+
+            request()->session()->regenerate();
+            session('name', $name);
+            return redirect()->intended('/dashboard')->with('message', 'welcome ' . $name);
+        }
+
+        return back()->with([
+            "loginMessage" => "Invalid Credentials"
+        ]);
     }
+
+    public function logout(Request $request)
+    {
+        // dd($request);
+
+        Auth::logout();
+
+        request()->session()->invalidate();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
+
+
 
     public function registration()
     {
@@ -32,7 +64,7 @@ class AuthController extends Controller
         $validated_data = $request->validate([
             'name'     => 'required',
             'username' => 'required|min:4|max:32|unique:users',
-            'email'    => 'required|email|unique:users|',
+            'email'    => 'required|email:dns|unique:users|',
             'password' => 'required|min:4|max:255'
         ]);
 
@@ -40,6 +72,6 @@ class AuthController extends Controller
 
         User::create($validated_data);
 
-        return redirect('/login')->with('message', 'You\'ve been registered, now you can login!');
+        return redirect('/login')->with('registration_message', 'You\'ve been registered, now you can login!');
     }
 }

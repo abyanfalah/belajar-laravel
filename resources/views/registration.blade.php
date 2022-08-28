@@ -41,7 +41,7 @@
       </div>
    @enderror
 
-   <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+   <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">Register</button>
 </form>
 <div class="d-block text-center">
    <small>

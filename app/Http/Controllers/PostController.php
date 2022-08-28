@@ -15,10 +15,10 @@ class PostController extends Controller
         // modify title when filtering
         $title = '';
         if ($category = request('category')) {
-            $title = ' in ' . $category;
+            $title .= ' in ' . $category;
         }
         if ($author = request('author')) {
-            $title = ' by ' . $author;
+            $title .= ' by ' . $author;
         }
 
 

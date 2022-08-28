@@ -2,11 +2,12 @@
 
 namespace App;
 
-use App\Http\Controllers\AuthController;
 use App\Models\User;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,9 +60,13 @@ Route::get('/about', function () {
     return view('about', $data);
 });
 
-Route::get('/login', [AuthController::class, 'login']);
+Route::get('/login', [AuthController::class, 'login'])->middleware('guest')->name('login');
+Route::post('/login', [AuthController::class, 'auth']);
+Route::post('/logout', [AuthController::class, 'logout']);
 
-Route::get('/registration', [AuthController::class, 'registration']);
+Route::get('/registration', [AuthController::class, 'registration'])->middleware('guest');
 Route::post('/registration', [AuthController::class, 'save_registration']);
 
-// Route::get('/test', [TestController::class, 'index']);
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+
+Route::get('/test', [TestController::class, 'index']);

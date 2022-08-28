@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,28 +17,35 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // User::factory(5)->create();
-        // Category::factory(3)->create();
+        User::factory(4)->create();
+        User::create([
+            'name'              => 'Abyan Falah',
+            'username'          => 'abyan',
+            'email'             => 'abyan@gmail.com',
+            'email_verified_at' => now(),
+            'password'          => bcrypt('scootermania'),
+            'remember_token'    => Str::random(10),
+        ]);
 
-        // Category::create([
-        //     'name' => 'Web Programming',
-        //     'slug' => 'web-programming'
-        // ]);
+        Category::create([
+            'name' => 'Web Programming',
+            'slug' => 'web-programming'
+        ]);
 
-        // Category::create([
-        //     'name' => 'Road Cycling',
-        //     'slug' => 'road-cycling'
-        // ]);
+        Category::create([
+            'name' => 'Road Cycling',
+            'slug' => 'road-cycling'
+        ]);
 
-        // Category::create([
-        //     'name' => 'Music',
-        //     'slug' => 'music'
-        // ]);
+        Category::create([
+            'name' => 'Music',
+            'slug' => 'music'
+        ]);
 
-        // Category::create([
-        //     'name' => 'Personal',
-        //     'slug' => 'personal'
-        // ]);
+        Category::create([
+            'name' => 'Personal',
+            'slug' => 'personal'
+        ]);
 
         Post::factory(30)->create();
     }

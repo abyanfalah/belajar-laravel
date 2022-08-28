@@ -1,19 +1,13 @@
 @extends('layouts.main')
 
 
-@section('container')            
-  <div class="card shadow bg-primary text-white w-50">
-    <div class="card-body">
-      <h1>
-        Hello worlds
-      </h1>
-    </div>
-  </div>
+@section('container')   
 
-  <div class="alert alert-info alert-dismissible">
-    alert
-    <button data-dismiss="alert" class="btn-danger close">
-      close
-    </button>
-  </div>
+  @if(session()->has('message'))
+    <div class="alert alert-dismissible alert-success">
+      {{ session('message') }}
+      <button class="close" data-dismiss="alert">&times;</button>
+    </div>
+  @endif
+
 @endsection
