@@ -7,7 +7,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,6 +67,15 @@ Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/registration', [AuthController::class, 'registration'])->middleware('guest');
 Route::post('/registration', [AuthController::class, 'save_registration']);
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+Route::get('/dashboard', function () {
+    return view('dashboard.index', [
+        "title" => "dashboard"
+    ]);
+})->middleware('auth');
 
+// RESOURCE ================================================
+Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
+
+
+// ================================================
 Route::get('/test', [TestController::class, 'index']);

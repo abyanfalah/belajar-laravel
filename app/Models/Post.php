@@ -13,9 +13,10 @@ class Post extends Model
     protected $guarded = ['id'];
     protected $with = ['user', 'category'];
 
-    // public function scopeFilter($query){
-
-    // }
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     public function scopeFilter($query, array $filters)
     {
